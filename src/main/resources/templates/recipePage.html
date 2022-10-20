@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Recipies</h1>
+<h2 th:text="${recipe.getName()} + ' receptje'"></h2>
+<p th:text="${recipe.getDescription()}">
+
+<h2 th:text="'Nehézségi fok: ' + ${recipe.getLevel().toString().toLowerCase()}"></h2>
+
+
+
+</p>
+<h3>Hozzávalók</h3>
+<div>
+    <ul th:each="ingredient : ${ingredients}">
+        <li th:text="${ingredient.toLowerCase()}"></li>
+    </ul>
+</div>
+
+</body>
+</html>

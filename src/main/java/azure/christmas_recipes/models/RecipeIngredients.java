@@ -11,15 +11,15 @@ public class RecipeIngredients {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer recipeId;
-    private Integer ingredientId;
+    private String ingredientName;
     private Double amount;
 
     public RecipeIngredients() {
     }
 
-    public RecipeIngredients(Integer recipeId, Integer ingredientId, Double amount) {
+    public RecipeIngredients(Integer recipeId, String ingredientName, Double amount) {
         this.recipeId = recipeId;
-        this.ingredientId = ingredientId;
+        this.ingredientName = ingredientName;
         this.amount = amount;
     }
 
@@ -39,12 +39,12 @@ public class RecipeIngredients {
         this.recipeId = recipeId;
     }
 
-    public Integer getIngredientId() {
-        return ingredientId;
+    public String getIngredientName() {
+        return ingredientName;
     }
 
-    public void setIngredientId(Integer ingredientId) {
-        this.ingredientId = ingredientId;
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
     }
 
     public Double getAmount() {

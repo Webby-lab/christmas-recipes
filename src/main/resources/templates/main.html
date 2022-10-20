@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipies</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Recipies</h1>
+
+<div>
+    <ul th:each="recipe : ${recipies}">
+        <li>
+            <a th:text="${recipe.getName()}" th:href="'/' + ${recipe.getId()}"></a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

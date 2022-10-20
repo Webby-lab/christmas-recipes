@@ -5,9 +5,9 @@ import javax.persistence.*;
 @Entity(name = "ingredients")
 public class Ingredient {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     private String name;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Integer id;
     @Enumerated(EnumType.STRING)
     private Unit unit;
 
@@ -19,13 +19,6 @@ public class Ingredient {
         this.unit = unit;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -41,5 +34,10 @@ public class Ingredient {
 
     public void setUnit(Unit unit) {
         this.unit = unit;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
