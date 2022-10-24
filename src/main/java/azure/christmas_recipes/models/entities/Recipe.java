@@ -1,7 +1,9 @@
-package azure.christmas_recipes.models;
+package azure.christmas_recipes.models.entities;
+
+import azure.christmas_recipes.models.entities.Level;
+import azure.christmas_recipes.models.entities.User;
 
 import javax.persistence.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Entity(name = "recipes")
 public class Recipe {
@@ -16,6 +18,7 @@ public class Recipe {
     @Enumerated(EnumType.STRING)
     private Level level;
 
+
     public Recipe() {
     }
 
@@ -25,6 +28,7 @@ public class Recipe {
         this.cookingTime = cookingTime;
         this.level = level;
     }
+
 
     public Integer getId() {
         return id;
@@ -65,4 +69,5 @@ public class Recipe {
     public void setLevel(Level level) {
         this.level = level;
     }
+
 }

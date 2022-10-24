@@ -1,8 +1,6 @@
 package azure.christmas_recipes.repositories;
 
-import azure.christmas_recipes.models.Ingredient;
-import azure.christmas_recipes.models.Recipe;
-import azure.christmas_recipes.models.RecipeIngredients;
+import azure.christmas_recipes.models.entities.RecipeIngredients;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

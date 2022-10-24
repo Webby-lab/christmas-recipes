@@ -1,6 +1,6 @@
 package azure.christmas_recipes.services;
 
-import azure.christmas_recipes.models.Recipe;
+import azure.christmas_recipes.models.entities.Recipe;
 import azure.christmas_recipes.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

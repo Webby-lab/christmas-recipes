@@ -1,6 +1,6 @@
 package azure.christmas_recipes.services;
 
-import azure.christmas_recipes.models.Ingredient;
+import azure.christmas_recipes.models.entities.Ingredient;
 import azure.christmas_recipes.repositories.IngredientRepository;
 import org.springframework.stereotype.Service;
 

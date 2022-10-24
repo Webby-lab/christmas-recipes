@@ -1,4 +1,4 @@
-package azure.christmas_recipes.models;
+package azure.christmas_recipes.models.entities;
 
 public enum Unit {
     KG("kg"), G("g"), PIECE("piece"), LITER("liter"), MILILITER("mililiter"), SPOON("spoon"), TEASPOON("teaspoon"), CUP("cup");

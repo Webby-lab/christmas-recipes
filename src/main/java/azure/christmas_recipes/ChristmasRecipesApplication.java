@@ -1,9 +1,10 @@
 package azure.christmas_recipes;
 
-import azure.christmas_recipes.models.*;
+import azure.christmas_recipes.models.entities.*;
 import azure.christmas_recipes.repositories.IngredientRepository;
 import azure.christmas_recipes.repositories.RecipeIngredientsRepository;
 import azure.christmas_recipes.repositories.RecipeRepository;
+import azure.christmas_recipes.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,22 +17,19 @@ public class ChristmasRecipesApplication implements CommandLineRunner {
 	IngredientRepository ingredientRepository;
 	RecipeRepository recipeRepository;
 	RecipeIngredientsRepository recipeIngredientsRepository;
+	UserRepository userRepository;
 	@Autowired
-	public ChristmasRecipesApplication(IngredientRepository ingredientRepository, RecipeRepository recipeRepository, RecipeIngredientsRepository recipeIngredientsRepository) {
+	public ChristmasRecipesApplication(IngredientRepository ingredientRepository, RecipeRepository recipeRepository, RecipeIngredientsRepository recipeIngredientsRepository, UserRepository userRepository) {
 		this.ingredientRepository = ingredientRepository;
 		this.recipeRepository = recipeRepository;
 		this.recipeIngredientsRepository = recipeIngredientsRepository;
-	}
-
-	public ChristmasRecipesApplication(IngredientRepository ingredientRepository, RecipeRepository recipeRepository) {
-		this.ingredientRepository = ingredientRepository;
-		this.recipeRepository = recipeRepository;
+		this.userRepository = userRepository;
 	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(ChristmasRecipesApplication.class, args);
-	}
 
+	}
 	@Override
 	public void run(String... args) throws Exception {
 		Ingredient sugar = new Ingredient("sugar", Unit.KG);
@@ -56,5 +54,8 @@ public class ChristmasRecipesApplication implements CommandLineRunner {
 		RecipeIngredients linzer3 = new RecipeIngredients(2, "egg", 1.0);
 		RecipeIngredients linzer4 = new RecipeIngredients(2, "butter", 0.25);
 		recipeIngredientsRepository.saveAll(Arrays.asList(linzer1, linzer2, linzer3, linzer4));
+		System.out.println(recipeIngredientsRepository.findIngredientsByRecipeNameNo("Linzer").get(0));
+		User pisti = new User("Pisti", "pisti@pisti.com", "password", Arrays.asList(pikota, linzer));
+		userRepository.save(pisti);
 	}
 }

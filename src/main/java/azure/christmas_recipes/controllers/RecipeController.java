@@ -20,7 +20,6 @@ public class RecipeController {
 
 
     @Autowired
-
     public RecipeController(RecipeIngredientsService recipeIngredientsService, IngredientService ingredientService, RecipeService recipeService) {
         this.recipeIngredientsService = recipeIngredientsService;
         this.ingredientService = ingredientService;
@@ -33,6 +32,7 @@ public class RecipeController {
     @GetMapping("/")
     public String renderMainPage(Model model) {
         model.addAttribute("recipies", recipeService.findAll());
+        model.addAttribute("iii", recipeIngredientsService.getIngredientsFromSelectedRecipies("Linzer", "Piskóta"));
         return "main";
     }
     @GetMapping("/{id}")

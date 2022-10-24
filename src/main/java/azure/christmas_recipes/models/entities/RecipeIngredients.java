@@ -1,4 +1,4 @@
-package azure.christmas_recipes.models;
+package azure.christmas_recipes.models.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
