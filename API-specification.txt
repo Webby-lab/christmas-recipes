@@ -1,0 +1,24 @@
+api/users
+
+-GET /api/users/{id}
+    desc: find and returns user by given id
+    path variable: {id} - user's id
+    responses:
+        - when id exists: res status: 200
+        - when id doesn't exists:
+            res status: 404
+            res body: ErrorDTO
+
+-POST /api/users
+    desc: register user
+    req body: User
+    responses:
+        - when valid data:
+            res status: 201
+            res body: UserDTO
+        - when invalid data:
+            res status: 406
+            res body: ErrorDTO
+        - when email already exists:
+            res status: 409
+            res body: ErrorDTO
