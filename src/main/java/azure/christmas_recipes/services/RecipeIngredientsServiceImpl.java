@@ -29,27 +29,29 @@ public class RecipeIngredientsServiceImpl implements RecipeIngredientsService {
         return recipeIngredientsRepository.findIngredientsByRecipeNameNo(name);
     }
 
-    @Override
-    public String getIngredientsFromSelectedRecipies(String nameFirst, String nameOther) {
-        HashMap<String, Double> selectedIngredient = new HashMap<>();
-        List<String> ingredientsFromFirst = recipeIngredientsRepository.findIngredientsByRecipeNameNo(nameFirst);
-        for (String text : ingredientsFromFirst) {
-            String[] splitted = text.split(",");
-            selectedIngredient.put(splitted[1], Double.parseDouble(splitted[0]));
+        @Override
+        public String getIngredientsListByRecipeName(List<String> favouriteRecipies) {
+        HashMap<String, Double> shoppingListItems = new HashMap<>();
+           for (String recipeName : favouriteRecipies) {
+               List<String> ingredientsFromRecipeByName = recipeIngredientsRepository.findIngredientsByRecipeNameNo(recipeName);
+               for (String text : ingredientsFromRecipeByName) {
+                   String[] splitted = text.split(",");
+                   if (!shoppingListItems.containsKey(splitted[1])) {
+                       shoppingListItems.put(splitted[1], Double.parseDouble(splitted[0]) );
+                   } else {
+                       shoppingListItems.put(splitted[1], shoppingListItems.get(splitted[1]) + Double.parseDouble(splitted[0]) );
+                   }
+                }
+           }
+        StringBuilder shoppingList = new StringBuilder();
+        for (String key : shoppingListItems.keySet()) {
+            shoppingList.append(key + ", " + shoppingListItems.get(key));
         }
-        List<String> ingredientsFromSecond = recipeIngredientsRepository.findIngredientsByRecipeNameNo(nameOther);
-        for (String text : ingredientsFromSecond) {
-            String[] splitted1 = text.split(",");
-            if (!selectedIngredient.containsKey(splitted1[1]))
-                selectedIngredient.put(splitted1[1], Double.parseDouble(splitted1[0]));
-            else {
-                selectedIngredient.put(splitted1[1], selectedIngredient.get(splitted1[1] + Double.parseDouble(splitted1[0])));
-            }
+        return shoppingList.toString();
         }
-            StringBuilder shoppingList = new StringBuilder();
-            for (String key : selectedIngredient.keySet()) {
-                shoppingList.append(key + selectedIngredient.get(key) + ", ");
-            }
-            return shoppingList.toString();
-        }
+
+
+
+
+
     }

@@ -4,6 +4,7 @@ import azure.christmas_recipes.exceptions.EmailAlreadyExistsException;
 import azure.christmas_recipes.models.dtos.UserDTO;
 import azure.christmas_recipes.models.entities.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
@@ -11,4 +12,5 @@ public interface UserService {
     Optional<UserDTO> findById(int id);
     void delete(int userId);
     User update(User user);
+    List<String> getFavouriteRecipiesName(Integer userId);
 }

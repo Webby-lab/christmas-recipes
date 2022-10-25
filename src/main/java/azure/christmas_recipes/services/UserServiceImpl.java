@@ -6,7 +6,11 @@ import azure.christmas_recipes.models.entities.User;
 import azure.christmas_recipes.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class UserServiceImpl implements UserService {
     UserRepository userRepository;
@@ -44,5 +48,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User update(User user) {
         return null;
+    }
+    @Override
+    public List<String> getFavouriteRecipiesName(Integer userId) {
+        Optional<User> user = userRepository.findById(userId);
+        return user.get().getFavouriteRecipies().stream()
+                .map(recipe -> recipe.getName())
+                .collect(Collectors.toList());
     }
 }

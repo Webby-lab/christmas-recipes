@@ -8,5 +8,5 @@ public interface RecipeIngredientsService {
     List<RecipeIngredients> findAllByRecipeName(String name);
     List<String> getIngredientsByRecipeName(String name);
     List<String> getIngredientsByRecipeNameNo(String name);
-    String getIngredientsFromSelectedRecipies(String namefirst, String nameSecond);
+    String getIngredientsListByRecipeName(List<String> favouriteRecipies);
 }

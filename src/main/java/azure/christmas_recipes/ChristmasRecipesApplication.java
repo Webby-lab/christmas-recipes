@@ -57,5 +57,6 @@ public class ChristmasRecipesApplication implements CommandLineRunner {
 		System.out.println(recipeIngredientsRepository.findIngredientsByRecipeNameNo("Linzer").get(0));
 		User pisti = new User("Pisti", "pisti@pisti.com", "password", Arrays.asList(pikota, linzer));
 		userRepository.save(pisti);
+
 	}
 }

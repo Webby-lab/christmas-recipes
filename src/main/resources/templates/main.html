@@ -14,10 +14,17 @@
             <a th:text="${recipe.getName()}" th:href="'/' + ${recipe.getId()}"></a>
         </li>
     </ul>
-    <ul th:each="ingred : ${iii}">
-        <li th:text="${ingred.toLowerCase()}"></li>
+<h1>Bevásárló lista</h1>
+    <ul th:each="recipeName : ${recipeNames}">
+        <li th:text="${recipeName}"></li>
     </ul>
+    <h3>a fenti sütikhez</h3>
+    <ul th:each="item : ${shoppingList}">
 
+        <li th:text = "${item}">
+
+        </li>
+    </ul>
 </div>
 
 </body>

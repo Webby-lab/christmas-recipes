@@ -6,33 +6,38 @@ import azure.christmas_recipes.repositories.RecipeRepository;
 import azure.christmas_recipes.services.IngredientService;
 import azure.christmas_recipes.services.RecipeIngredientsService;
 import azure.christmas_recipes.services.RecipeService;
+import azure.christmas_recipes.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 public class RecipeController {
     RecipeIngredientsService recipeIngredientsService;
     IngredientService ingredientService;
     RecipeService recipeService;
+    UserService userService;
 
 
     @Autowired
-    public RecipeController(RecipeIngredientsService recipeIngredientsService, IngredientService ingredientService, RecipeService recipeService) {
+    public RecipeController(RecipeIngredientsService recipeIngredientsService, IngredientService ingredientService, RecipeService recipeService, UserService userService) {
         this.recipeIngredientsService = recipeIngredientsService;
         this.ingredientService = ingredientService;
         this.recipeService = recipeService;
+        this.userService = userService;
     }
-
-
-
 
     @GetMapping("/")
     public String renderMainPage(Model model) {
         model.addAttribute("recipies", recipeService.findAll());
-        model.addAttribute("iii", recipeIngredientsService.getIngredientsFromSelectedRecipies("Linzer", "Piskóta"));
+        List<String> userFavouretiRecipies = userService.getFavouriteRecipiesName(1);
+        model.addAttribute("recipeNames", userFavouretiRecipies);
+        model.addAttribute("shoppingList", recipeIngredientsService.getIngredientsListByRecipeName(userFavouretiRecipies));
         return "main";
     }
     @GetMapping("/{id}")
@@ -42,4 +47,6 @@ public class RecipeController {
         model.addAttribute("ingredients", recipeIngredientsService.getIngredientsByRecipeName(name));
         return "recipePage";
     }
+
+
 }
