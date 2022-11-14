@@ -45,7 +45,7 @@ public class RecipeIngredientsServiceImpl implements RecipeIngredientsService {
            }
         StringBuilder shoppingList = new StringBuilder();
         for (String key : shoppingListItems.keySet()) {
-            shoppingList.append(key + ", " + shoppingListItems.get(key));
+            shoppingList.append(key + " " + shoppingListItems.get(key) + ",  ");
         }
         return shoppingList.toString();
         }
