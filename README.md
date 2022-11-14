@@ -3,8 +3,8 @@
 <br />
 <div align="center">
   
-    <img src="img/christmas.jpg" alt="Logo" >
-  </a>
+    <img src="img/christmas.jpg" alt="Logo">
+  
 
 <h3 align="center">project_title</h3>
 
