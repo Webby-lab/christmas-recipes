@@ -59,7 +59,7 @@ public class RecipeRestController {
             return ResponseEntity.status(200).body(user.get());
     }
 
-
+    @PostMapping
     public ResponseEntity register(@RequestBody User user) {
         try {
             UserDTO registeredUser = userService.register(user);
