@@ -1,6 +1,7 @@
 package azure.christmas_recipes.models.dtos;
 
 import azure.christmas_recipes.models.entities.Recipe;
+import azure.christmas_recipes.services.RecipeService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,17 +9,13 @@ import java.util.stream.Collectors;
 
 public class RecipesDTO {
     private Integer userId;
-    private List<RecipeDTO> recipies = new ArrayList<>();
+    private List<RecipeDTO> recipes = new ArrayList<>();
     private int count;
 
     public RecipesDTO() {
     }
 
-    public RecipesDTO(Integer userId, List<Recipe> recipies) {
-        this.userId = userId;
-        this.recipies = recipies.stream().map(RecipeDTO::new).collect(Collectors.toList());
-        this.count = recipies.size();
-    }
+
 
     public Integer getUserId() {
         return userId;
@@ -28,12 +25,12 @@ public class RecipesDTO {
         this.userId = userId;
     }
 
-    public List<RecipeDTO> getRecipies() {
-        return recipies;
+    public List<RecipeDTO> getRecipes() {
+        return recipes;
     }
 
-    public void setRecipies(List<RecipeDTO> recipies) {
-        this.recipies = recipies;
+    public void setRecipes(List<RecipeDTO> recipes) {
+        this.recipes = recipes;
     }
 
     public int getCount() {

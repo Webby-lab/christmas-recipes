@@ -11,8 +11,14 @@ import java.util.Optional;
 
 public interface UserService {
     UserDTO register(User user) throws EmailAlreadyExistsException, IllegalArgumentException;
+
     Optional<UserDTO> findById(int id) throws NoSuchUserException;
+
     void delete(int userId) throws NoSuchUserException;
+
     UserDTO update(int userId, UserRegistrationDTO modification) throws NoSuchUserException, IllegalArgumentException;
-    List<String> getFavouriteRecipiesName(Integer userId);
+
+    List<String> getUserRecipesName(Integer userId);
+
+
 }

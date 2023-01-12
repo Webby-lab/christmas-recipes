@@ -74,9 +74,9 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<String> getFavouriteRecipiesName(Integer userId) {
+    public List<String> getUserRecipesName(Integer userId) {
         Optional<User> user = userRepository.findById(userId);
-        return user.get().getFavouriteRecipies().stream()
+        return user.get().getUserRecipes().stream()
                 .map(recipe -> recipe.getName())
                 .collect(Collectors.toList());
     }

@@ -34,10 +34,10 @@ public class RecipeController {
 
     @GetMapping("/")
     public String renderMainPage(Model model) {
-        model.addAttribute("recipies", recipeService.findAll());
-        List<String> userFavouretiRecipies = userService.getFavouriteRecipiesName(1);
-        model.addAttribute("recipeNames", userFavouretiRecipies);
-        model.addAttribute("shoppingList", recipeIngredientsService.getIngredientsListByRecipeName(userFavouretiRecipies));
+        model.addAttribute("recipes", recipeService.findAll());
+        List<String> allRecipes = recipeService.getAllRecipeName();
+        model.addAttribute("recipeNames", allRecipes);
+        model.addAttribute("shoppingList", recipeIngredientsService.getIngredientsListByRecipeName(allRecipes));
         return "main";
     }
     @GetMapping("/{id}")

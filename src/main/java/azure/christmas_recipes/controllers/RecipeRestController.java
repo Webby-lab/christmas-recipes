@@ -7,11 +7,13 @@ import azure.christmas_recipes.models.dtos.RecipesDTO;
 import azure.christmas_recipes.models.dtos.UserDTO;
 import azure.christmas_recipes.models.dtos.UserRegistrationDTO;
 import azure.christmas_recipes.models.entities.User;
+import azure.christmas_recipes.repositories.UserRepository;
 import azure.christmas_recipes.services.IngredientService;
 import azure.christmas_recipes.services.RecipeIngredientsService;
 import azure.christmas_recipes.services.RecipeService;
 import azure.christmas_recipes.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,10 +23,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/users")
 public class RecipeRestController {
-    RecipeIngredientsService recipeIngredientsService;
-    IngredientService ingredientService;
-    UserService userService;
-    RecipeService recipeService;
+
+    private RecipeIngredientsService recipeIngredientsService;
+    private IngredientService ingredientService;
+    private UserService userService;
+    private RecipeService recipeService;
     @Autowired
     public RecipeRestController(RecipeIngredientsService recipeIngredientsService, IngredientService ingredientService, UserService userService, RecipeService recipeService) {
         this.recipeIngredientsService = recipeIngredientsService;
@@ -38,12 +41,18 @@ public class RecipeRestController {
         return ResponseEntity.status(404).body(new ErrorDTO(e.getMessage()));
     }
 
-    @GetMapping
-    public ResponseEntity ownProfile(@RequestHeader(value = "Authorizatioo") Integer id) {
-        Optional<UserDTO> user = userService.findById(id);
-        return ResponseEntity.status(200).body(user.get());
-    }
+//    @GetMapping
+//    public ResponseEntity ownProfile(@RequestHeader(value = "Authorization") Integer id) {
+//        Optional<UserDTO> user = userService.findById(id);
+//        return ResponseEntity.status(200).body(user.get());
+//    }
 
+    @GetMapping
+    public ResponseEntity getRecipesOfUser(@RequestHeader(value = "Authorization") Integer id) {
+        RecipesDTO userRecipes = recipeService.findUserRecipes(id);
+        return ResponseEntity.ok(userRecipes);
+
+}
     @GetMapping("/{id}")
     public ResponseEntity findUserById(@PathVariable Integer id) {
             Optional<UserDTO> user = userService.findById(id);
@@ -51,7 +60,6 @@ public class RecipeRestController {
     }
 
 
-    @PostMapping
     public ResponseEntity register(@RequestBody User user) {
         try {
             UserDTO registeredUser = userService.register(user);
@@ -84,10 +92,7 @@ public class RecipeRestController {
 
     }
 
-    @GetMapping("/{id}/recipies")
-    public ResponseEntity getRecipiesOfUser(@PathVariable Integer id) {
-            RecipesDTO userFavouriteRecipies = recipeService.findUserRecipies(id);
-            return ResponseEntity.ok(userFavouriteRecipies);
-    }
+
+
 
 }

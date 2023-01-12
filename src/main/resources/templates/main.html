@@ -9,7 +9,7 @@
 <h1>Recipies</h1>
 
 <div>
-    <ul th:each="recipe : ${recipies}">
+    <ul th:each="recipe : ${recipes}">
         <li>
             <a th:text="${recipe.getName()}" th:href="'/' + ${recipe.getId()}"></a>
         </li>

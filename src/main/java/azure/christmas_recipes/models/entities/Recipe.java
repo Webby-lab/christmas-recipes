@@ -17,6 +17,8 @@ public class Recipe {
     private Double cookingTime;
     @Enumerated(EnumType.STRING)
     private Level level;
+    @ManyToOne
+    private User owner;
 
 
     public Recipe() {
@@ -29,6 +31,14 @@ public class Recipe {
         this.level = level;
     }
 
+    public Recipe(Integer id, String name, String description, Double cookingTime, Level level, User owner) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.cookingTime = cookingTime;
+        this.level = level;
+        this.owner = owner;
+    }
 
     public Integer getId() {
         return id;
@@ -70,4 +80,11 @@ public class Recipe {
         this.level = level;
     }
 
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 }

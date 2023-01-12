@@ -12,8 +12,8 @@ public class User {
     private String name;
     private String email;
     private String password;
-    @OneToMany
-    private List<Recipe> favouriteRecipies = new ArrayList<>();
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<Recipe> userRecipes = new ArrayList<>();
 
     public User() {
     }
@@ -24,12 +24,12 @@ public class User {
         this.password = password;
     }
 
-    public User(String name, String email, String password, List<Recipe> favouriteRecipies) {
+    public User(String name, String email, String password, List<Recipe> userRecipes) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.favouriteRecipies = favouriteRecipies;
-
+        this.userRecipes = userRecipes;
+        userRecipes.forEach(recipe -> recipe.setOwner(this));
     }
 
     public Integer getId() {
@@ -64,11 +64,11 @@ public class User {
         this.password = password;
     }
 
-    public List<Recipe> getFavouriteRecipies() {
-        return favouriteRecipies;
+    public List<Recipe> getUserRecipes() {
+        return userRecipes;
     }
 
-    public void setFavouriteRecipies(List<Recipe> favouriteRecipies) {
-        this.favouriteRecipies = favouriteRecipies;
+    public void setUserRecipes(List<Recipe> userRecipes) {
+        this.userRecipes = userRecipes;
     }
 }

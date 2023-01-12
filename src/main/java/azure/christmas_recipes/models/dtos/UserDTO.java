@@ -12,7 +12,7 @@ public class UserDTO {
     private Integer id;
     private String name;
     private String email;
-    private List<String> favouriteRecipies = new ArrayList<>();
+    private List<String> userRecipes = new ArrayList<>();
 
     public UserDTO() {
     }
@@ -21,7 +21,7 @@ public class UserDTO {
         this.id = user.getId();
         this.name = user.getName();
         this.email = user.getEmail();
-        this.favouriteRecipies = user.getFavouriteRecipies().stream()
+        this.userRecipes = user.getUserRecipes().stream()
                 .map(recipe -> recipe.getName())
                 .collect(Collectors.toList());
     }
@@ -50,11 +50,11 @@ public class UserDTO {
         this.email = email;
     }
 
-    public List<String> getFavouriteRecipies() {
-        return favouriteRecipies;
+    public List<String> getUserRecipes() {
+        return userRecipes;
     }
 
-    public void setFavouriteRecipies(List<String> favouriteRecipies) {
-        this.favouriteRecipies = favouriteRecipies;
+    public void setUserRecipes(List<String> userRecipes) {
+        this.userRecipes = userRecipes;
     }
 }

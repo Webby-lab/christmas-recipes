@@ -8,15 +8,9 @@ public class RecipeDTO {
     private String name;
     private Double cookingTime;
     private Level level;
+    private int popularity;
 
     public RecipeDTO() {
-    }
-
-    public RecipeDTO(Recipe recipe) {
-        id = recipe.getId();
-        name = recipe.getName();
-        cookingTime = recipe.getCookingTime();
-        level = recipe.getLevel();
     }
 
     public Integer getId() {
@@ -49,5 +43,13 @@ public class RecipeDTO {
 
     public void setLevel(Level level) {
         this.level = level;
+    }
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
     }
 }
